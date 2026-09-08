@@ -1,0 +1,65 @@
+@model CadastroViewModel
+@{
+    ViewData["Title"] = "Criar conta";
+}
+
+<section class="auth-section">
+    <div class="auth-shell">
+        <div class="auth-intro">
+            <span class="eyebrow">Comece agora</span>
+            <h1>Organize suas consultas.</h1>
+            <p>Crie sua conta para registrar e acompanhar seus agendamentos em um ambiente individual.</p>
+            <div class="security-note">
+                <strong>Sobre sua senha</strong>
+                <span>Ela é transformada em hash antes de ser salva. Nem o sistema armazena a senha original.</span>
+            </div>
+        </div>
+
+        <div class="form-card">
+            <div class="form-card-header">
+                <h2>Criar conta</h2>
+                <p>Preencha os dados abaixo.</p>
+            </div>
+
+            <partial name="_ValidationSummary" />
+
+            <form asp-action="Cadastro" method="post" class="stack-form">
+                <div class="field-group">
+                    <label asp-for="Nome"></label>
+                    <input asp-for="Nome" autocomplete="name" placeholder="Seu nome completo" />
+                    <span asp-validation-for="Nome"></span>
+                </div>
+
+                <div class="field-group">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" type="email" autocomplete="email" placeholder="voce@exemplo.com" />
+                    <span asp-validation-for="Email"></span>
+                </div>
+
+                <div class="field-grid">
+                    <div class="field-group">
+                        <label asp-for="Senha"></label>
+                        <div class="password-field">
+                            <input asp-for="Senha" autocomplete="new-password" placeholder="Mínimo de 6 caracteres" />
+                            <button type="button" class="password-toggle" aria-label="Mostrar senha">Mostrar</button>
+                        </div>
+                        <span asp-validation-for="Senha"></span>
+                    </div>
+
+                    <div class="field-group">
+                        <label asp-for="ConfirmacaoSenha"></label>
+                        <div class="password-field">
+                            <input asp-for="ConfirmacaoSenha" autocomplete="new-password" placeholder="Repita a senha" />
+                            <button type="button" class="password-toggle" aria-label="Mostrar senha">Mostrar</button>
+                        </div>
+                        <span asp-validation-for="ConfirmacaoSenha"></span>
+                    </div>
+                </div>
+
+                <button class="button button-primary button-block" type="submit">Criar conta</button>
+            </form>
+
+            <p class="form-footer">Já tem uma conta? <a asp-action="Login">Entrar</a></p>
+        </div>
+    </div>
+</section>

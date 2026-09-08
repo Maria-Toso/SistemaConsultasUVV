@@ -1,0 +1,24 @@
+@model ConsultaFormViewModel
+
+<partial name="_ValidationSummary" />
+
+<div class="field-group">
+    <label asp-for="Especialidade"></label>
+    <input asp-for="Especialidade" placeholder="Ex.: Cardiologia, Psicologia, Odontologia" />
+    <span asp-validation-for="Especialidade"></span>
+</div>
+
+<div class="field-group">
+    <label asp-for="DataHora"></label>
+    <input asp-for="DataHora" type="datetime-local" asp-format="{0:yyyy-MM-ddTHH:mm}" />
+    <span asp-validation-for="DataHora"></span>
+</div>
+
+<div class="field-group">
+    <label asp-for="Descricao"></label>
+    <textarea asp-for="Descricao" rows="5" placeholder="Descreva o motivo ou outras informações importantes."></textarea>
+    <div class="field-help-row">
+        <span asp-validation-for="Descricao"></span>
+        <small>Máximo de 500 caracteres</small>
+    </div>
+</div>

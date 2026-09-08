@@ -1,0 +1,76 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "1. Restaurar pacotes",
+      "type": "process",
+      "command": "dotnet",
+      "args": [
+        "restore",
+        "${workspaceFolder}/SistemaConsultasUVV.csproj"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "2. Restaurar ferramenta do EF Core",
+      "type": "process",
+      "command": "dotnet",
+      "args": [
+        "tool",
+        "restore"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "3. Criar ou atualizar banco",
+      "type": "process",
+      "command": "dotnet",
+      "args": [
+        "ef",
+        "database",
+        "update"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "1. Restaurar pacotes",
+        "2. Restaurar ferramenta do EF Core"
+      ],
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "Compilar projeto",
+      "type": "process",
+      "command": "dotnet",
+      "args": [
+        "build",
+        "${workspaceFolder}/SistemaConsultasUVV.csproj"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": "$msCompile"
+    },
+    {
+      "label": "Executar projeto",
+      "type": "process",
+      "command": "dotnet",
+      "args": [
+        "watch",
+        "run",
+        "--project",
+        "${workspaceFolder}/SistemaConsultasUVV.csproj"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": "$msCompile"
+    }
+  ]
+}

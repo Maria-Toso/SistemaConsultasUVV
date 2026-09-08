@@ -1,0 +1,56 @@
+@model LoginViewModel
+@{
+    ViewData["Title"] = "Entrar";
+}
+
+<section class="auth-section">
+    <div class="auth-shell">
+        <div class="auth-intro">
+            <span class="eyebrow">Bem-vindo de volta</span>
+            <h1>Acesse seus agendamentos.</h1>
+            <p>Entre com os dados cadastrados para visualizar e gerenciar suas consultas.</p>
+            <ul class="auth-benefits">
+                <li><span>✓</span> Senha armazenada de forma segura</li>
+                <li><span>✓</span> Acesso individual às consultas</li>
+                <li><span>✓</span> Sessão protegida por autenticação</li>
+            </ul>
+        </div>
+
+        <div class="form-card">
+            <div class="form-card-header">
+                <h2>Entrar</h2>
+                <p>Informe seu e-mail e sua senha.</p>
+            </div>
+
+            <partial name="_ValidationSummary" />
+
+            <form asp-action="Login" method="post" class="stack-form">
+                <input asp-for="ReturnUrl" type="hidden" />
+
+                <div class="field-group">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" type="email" autocomplete="email" placeholder="voce@exemplo.com" />
+                    <span asp-validation-for="Email"></span>
+                </div>
+
+                <div class="field-group">
+                    <label asp-for="Senha"></label>
+                    <div class="password-field">
+                        <input asp-for="Senha" autocomplete="current-password" placeholder="Digite sua senha" />
+                        <button type="button" class="password-toggle" aria-label="Mostrar senha">Mostrar</button>
+                    </div>
+                    <span asp-validation-for="Senha"></span>
+                </div>
+
+                <label class="check-field">
+                    <input asp-for="LembrarMe" />
+                    <span>Manter conectado neste dispositivo</span>
+                </label>
+
+                <button class="button button-primary button-block" type="submit">Entrar</button>
+            </form>
+
+            <p class="form-footer">Ainda não tem uma conta? <a asp-action="Cadastro">Cadastre-se</a></p>
+        </div>
+    </div>
+</section>

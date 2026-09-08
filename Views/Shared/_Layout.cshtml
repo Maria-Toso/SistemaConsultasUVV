@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Sistema de Gestão de Consultas UVV" />
+    <title>@ViewData["Title"] - Consultas UVV</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="site-header">
+        <nav class="navbar container" aria-label="Navegação principal">
+            <a class="brand" asp-controller="Home" asp-action="Index" aria-label="Consultas UVV - Início">
+                <span class="brand-mark" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" role="img">
+                        <path d="M7 3v3a5 5 0 0 0 10 0V3M5 3h4M15 3h4M12 11v3a5 5 0 0 0 5 5h1" />
+                        <circle cx="19" cy="19" r="2" />
+                    </svg>
+                </span>
+                <span>Consultas <strong>UVV</strong></span>
+            </a>
+
+            <button class="nav-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="main-menu">
+                <span></span><span></span><span></span>
+            </button>
+
+            <div class="nav-menu" id="main-menu">
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <a asp-controller="Consultas" asp-action="Index">Minhas consultas</a>
+                    <a class="button button-small button-primary" asp-controller="Consultas" asp-action="Create">Nova consulta</a>
+                    <div class="user-chip" title="Usuário conectado">
+                        <span class="user-avatar">@User.Identity.Name?.Substring(0, 1).ToUpperInvariant()</span>
+                        <span>@User.Identity.Name</span>
+                    </div>
+                    <form asp-controller="Conta" asp-action="Logout" method="post">
+                        <button class="button-link" type="submit">Sair</button>
+                    </form>
+                }
+                else
+                {
+                    <a asp-controller="Home" asp-action="Index">Início</a>
+                    <a asp-controller="Conta" asp-action="Login">Entrar</a>
+                    <a class="button button-small button-primary" asp-controller="Conta" asp-action="Cadastro">Criar conta</a>
+                }
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        @if (TempData["Sucesso"] is string mensagem)
+        {
+            <div class="container alert-wrap">
+                <div class="alert alert-success" role="status">
+                    <span>@mensagem</span>
+                    <button type="button" class="alert-close" aria-label="Fechar aviso">×</button>
+                </div>
+            </div>
+        }
+
+        @RenderBody()
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <span>© @DateTime.Now.Year Consultas UVV</span>
+            <span>Desenvolvimento Web Back-end · <a href="/swagger">Swagger/API</a></span>
+        </div>
+    </footer>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

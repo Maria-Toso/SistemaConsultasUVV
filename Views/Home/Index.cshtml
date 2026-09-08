@@ -1,0 +1,76 @@
+@{
+    ViewData["Title"] = "Início";
+}
+
+<section class="hero">
+    <div class="container hero-grid">
+        <div class="hero-copy">
+            <span class="eyebrow">Gestão simples e segura</span>
+            <h1>Suas consultas organizadas em um só lugar.</h1>
+            <p>
+                Cadastre, acompanhe e atualize seus agendamentos com praticidade.
+                Sem papéis, sem confusão e sem precisar decorar horários.
+            </p>
+            <div class="hero-actions">
+                <a class="button button-primary" asp-controller="Conta" asp-action="Cadastro">Criar minha conta</a>
+                <a class="button button-secondary" asp-controller="Conta" asp-action="Login">Já tenho uma conta</a>
+            </div>
+            <div class="trust-row">
+                <span><i class="status-dot"></i> Acesso protegido</span>
+                <span><i class="status-dot"></i> Dados individuais</span>
+            </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+            <div class="dashboard-preview">
+                <div class="preview-topbar">
+                    <span></span><span></span><span></span>
+                </div>
+                <div class="preview-content">
+                    <div class="preview-heading">
+                        <div>
+                            <small>Próximo agendamento</small>
+                            <strong>Consulta confirmada</strong>
+                        </div>
+                        <span class="preview-badge">Agendada</span>
+                    </div>
+                    <div class="preview-date">
+                        <span class="preview-day">28</span>
+                        <span><strong>Agosto</strong><small>09:30</small></span>
+                    </div>
+                    <div class="preview-info">
+                        <span>Especialidade</span>
+                        <strong>Clínica Geral</strong>
+                    </div>
+                    <div class="preview-lines"><i></i><i></i><i></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="features-section">
+    <div class="container">
+        <div class="section-heading">
+            <span class="eyebrow">Como funciona</span>
+            <h2>Três passos. Nenhum drama.</h2>
+        </div>
+        <div class="feature-grid">
+            <article class="feature-card">
+                <span class="feature-number">01</span>
+                <h3>Crie sua conta</h3>
+                <p>Cadastre nome, e-mail e uma senha protegida por hash.</p>
+            </article>
+            <article class="feature-card">
+                <span class="feature-number">02</span>
+                <h3>Agende a consulta</h3>
+                <p>Informe especialidade, data, horário e os detalhes necessários.</p>
+            </article>
+            <article class="feature-card">
+                <span class="feature-number">03</span>
+                <h3>Gerencie tudo</h3>
+                <p>Consulte, edite ou exclua apenas os seus próprios agendamentos.</p>
+            </article>
+        </div>
+    </div>
+</section>

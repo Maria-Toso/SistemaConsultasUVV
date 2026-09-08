@@ -1,0 +1,29 @@
+@model ConsultaFormViewModel
+@{
+    ViewData["Title"] = "Nova consulta";
+}
+
+<section class="page-section">
+    <div class="container form-page-grid">
+        <div class="page-aside">
+            <a class="back-link" asp-action="Index">← Voltar para consultas</a>
+            <span class="eyebrow">Novo agendamento</span>
+            <h1>Agendar consulta</h1>
+            <p>Preencha os dados da consulta. A data e a hora precisam estar no futuro.</p>
+            <div class="aside-tip">
+                <strong>Dica</strong>
+                <span>Use a descrição para registrar o motivo da consulta ou informações que não quer esquecer.</span>
+            </div>
+        </div>
+
+        <div class="form-card form-card-large">
+            <form asp-action="Create" method="post" class="stack-form">
+                <partial name="_Formulario" model="Model" />
+                <div class="form-actions">
+                    <a class="button button-secondary" asp-action="Index">Cancelar</a>
+                    <button class="button button-primary" type="submit">Salvar consulta</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

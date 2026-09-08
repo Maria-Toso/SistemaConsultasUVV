@@ -1,0 +1,15 @@
+@baseUrl = http://localhost:5098
+
+### Endpoint público: confirma que a API está online
+GET {{baseUrl}}/api/status
+Accept: application/json
+
+### Endpoint protegido: sem login deve responder 401
+GET {{baseUrl}}/api/consultas
+Accept: application/json
+
+###
+# Para testar os endpoints protegidos com a autenticação por cookie:
+# 1. faça login no sistema pelo navegador;
+# 2. abra http://localhost:5098/swagger no mesmo navegador;
+# 3. execute GET /api/consultas ou GET /api/consultas/{id}.

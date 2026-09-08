@@ -1,0 +1,26 @@
+@model ConsultaFormViewModel
+@{
+    ViewData["Title"] = "Editar consulta";
+}
+
+<section class="page-section">
+    <div class="container form-page-grid">
+        <div class="page-aside">
+            <a class="back-link" asp-action="Index">← Voltar para consultas</a>
+            <span class="eyebrow">Atualizar agendamento</span>
+            <h1>Editar consulta</h1>
+            <p>Altere os dados necessários e confirme para salvar.</p>
+        </div>
+
+        <div class="form-card form-card-large">
+            <form asp-action="Edit" method="post" class="stack-form">
+                <input asp-for="Id" type="hidden" />
+                <partial name="_Formulario" model="Model" />
+                <div class="form-actions">
+                    <a class="button button-secondary" asp-action="Index">Cancelar</a>
+                    <button class="button button-primary" type="submit">Salvar alterações</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

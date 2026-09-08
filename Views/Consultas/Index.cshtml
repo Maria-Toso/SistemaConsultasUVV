@@ -1,0 +1,115 @@
+@model IReadOnlyList<Consulta>
+@{
+    ViewData["Title"] = "Minhas consultas";
+    var agora = DateTime.Now;
+    var agendadas = Model.Where(consulta => consulta.DataHora >= agora).ToList();
+    var anteriores = Model.Where(consulta => consulta.DataHora < agora).OrderByDescending(consulta => consulta.DataHora).ToList();
+    var proxima = agendadas.FirstOrDefault();
+}
+
+<section class="dashboard-section">
+    <div class="container">
+        <div class="page-heading heading-with-action">
+            <div>
+                <span class="eyebrow">Área do usuário</span>
+                <h1>Minhas consultas</h1>
+                <p>Acompanhe e gerencie seus agendamentos.</p>
+            </div>
+            <a class="button button-primary" asp-action="Create">Agendar consulta</a>
+        </div>
+
+        <div class="summary-grid">
+            <article class="summary-card">
+                <span class="summary-label">Agendadas</span>
+                <strong>@agendadas.Count</strong>
+                <small>consultas futuras</small>
+            </article>
+            <article class="summary-card">
+                <span class="summary-label">Histórico</span>
+                <strong>@anteriores.Count</strong>
+                <small>consultas anteriores</small>
+            </article>
+            <article class="summary-card summary-card-wide">
+                <span class="summary-label">Próxima consulta</span>
+                @if (proxima is not null)
+                {
+                    <strong class="summary-date">@proxima.DataHora.ToString("dd/MM/yyyy 'às' HH:mm")</strong>
+                    <small>@proxima.Especialidade</small>
+                }
+                else
+                {
+                    <strong class="summary-date">Nenhuma agendada</strong>
+                    <small>Cadastre uma nova consulta quando precisar.</small>
+                }
+            </article>
+        </div>
+
+        <div class="content-section-heading">
+            <h2>Próximos agendamentos</h2>
+            <span>@agendadas.Count registro(s)</span>
+        </div>
+
+        @if (agendadas.Count == 0)
+        {
+            <div class="empty-state compact-empty">
+                <div class="empty-icon" aria-hidden="true">+</div>
+                <h3>Você ainda não possui consultas agendadas</h3>
+                <p>Cadastre o primeiro agendamento para começar.</p>
+                <a class="button button-primary" asp-action="Create">Nova consulta</a>
+            </div>
+        }
+        else
+        {
+            <div class="appointment-list">
+                @foreach (var consulta in agendadas)
+                {
+                    <article class="appointment-card">
+                        <div class="appointment-date">
+                            <span>@consulta.DataHora.ToString("dd")</span>
+                            <strong>@consulta.DataHora.ToString("MMM").ToUpperInvariant()</strong>
+                            <small>@consulta.DataHora.ToString("HH:mm")</small>
+                        </div>
+                        <div class="appointment-main">
+                            <span class="appointment-status">Agendada</span>
+                            <h3>@consulta.Especialidade</h3>
+                            <p>@consulta.Descricao</p>
+                        </div>
+                        <div class="appointment-actions">
+                            <a class="action-link" asp-action="Details" asp-route-id="@consulta.Id">Detalhes</a>
+                            <a class="action-link" asp-action="Edit" asp-route-id="@consulta.Id">Editar</a>
+                            <a class="action-link action-danger" asp-action="Delete" asp-route-id="@consulta.Id">Excluir</a>
+                        </div>
+                    </article>
+                }
+            </div>
+        }
+
+        @if (anteriores.Count > 0)
+        {
+            <details class="history-panel">
+                <summary>Ver histórico de consultas (@anteriores.Count)</summary>
+                <div class="appointment-list history-list">
+                    @foreach (var consulta in anteriores)
+                    {
+                        <article class="appointment-card appointment-past">
+                            <div class="appointment-date">
+                                <span>@consulta.DataHora.ToString("dd")</span>
+                                <strong>@consulta.DataHora.ToString("MMM").ToUpperInvariant()</strong>
+                                <small>@consulta.DataHora.ToString("HH:mm")</small>
+                            </div>
+                            <div class="appointment-main">
+                                <span class="appointment-status status-past">Realizada</span>
+                                <h3>@consulta.Especialidade</h3>
+                                <p>@consulta.Descricao</p>
+                            </div>
+                            <div class="appointment-actions">
+                                <a class="action-link" asp-action="Details" asp-route-id="@consulta.Id">Detalhes</a>
+                                <a class="action-link action-danger" asp-action="Delete" asp-route-id="@consulta.Id">Excluir</a>
+                            </div>
+                        </article>
+                    }
+                </div>
+            </details>
+        }
+    </div>
+</section>
