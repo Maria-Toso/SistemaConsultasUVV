@@ -182,7 +182,7 @@ Para testar os endpoints protegidos, faça login pela interface no mesmo navegad
 
 ## Repositório no GitHub
 
-**Link:** ADICIONAR LINK DO REPOSITÓRIO
+**Link:** [GitHub](https://github.com/Maria-Toso/SistemaConsultasUVV)
 
 ## Vídeo demonstrativo
 
