@@ -186,4 +186,4 @@ Para testar os endpoints protegidos, faça login pela interface no mesmo navegad
 
 ## Vídeo demonstrativo
 
-**Link:** ADICIONAR LINK DO LOOM, YOUTUBE OU SIMILAR
+**Link:** [Youtube](https://youtu.be/0t2lAwrt7bQ)
